@@ -1,0 +1,86 @@
+[
+    {
+        "Prompt": "What is an operating system?\n",
+        "Message": "An operating system (OS) is software that manages computer hardware resources and provides common services for computer programs.",
+        "Time Sent": 1724951402061,
+        "Time Recieved": 1724951403295,
+        "Source": "Groq"
+    },
+    {
+        "Prompt": "What is the OSI model?\n",
+        "Message": "The OSI model is a 7-layer framework for designing and implementing computer networks, separating functions for efficient communication.",
+        "Time Sent": 1724951403295,
+        "Time Recieved": 1724951403676,
+        "Source": "Groq"
+    },
+    {
+        "Prompt": "Who was Alan Turing?\n",
+        "Message": "Alan Turing: British mathematician, computer scientist, and logician who cracked the German Enigma code during World War II.",
+        "Time Sent": 1724951403676,
+        "Time Recieved": 1724951404035,
+        "Source": "Groq"
+    },
+    {
+        "Prompt": "How do computer networks work?\n",
+        "Message": "Computer networks connect devices via cables or Wi-Fi, allowing data transmission and reception through routers and switches, enabling communication.",
+        "Time Sent": 1724951404035,
+        "Time Recieved": 1724951404872,
+        "Source": "Groq"
+    },
+    {
+        "Prompt": "What is the Linux Kernel?\n",
+        "Message": "The Linux kernel is a core component of the Linux operating system, managing hardware resources and providing basic system functionality.",
+        "Time Sent": 1724951404872,
+        "Time Recieved": 1724951405332,
+        "Source": "Groq"
+    },
+    {
+        "Prompt": "What is a File system?\n",
+        "Message": "A file system is a way to organize and manage files on a computer, providing structure and access to stored data.",
+        "Time Sent": 1724951405332,
+        "Time Recieved": 1724951405662,
+        "Source": "Groq"
+    },
+    {
+        "Prompt": "What is Docker?\n",
+        "Message": "Docker is a software containerization platform that allows developers to package, ship, and run applications in isolated environments.",
+        "Time Sent": 1724951405662,
+        "Time Recieved": 1724951405979,
+        "Source": "Groq"
+    },
+    {
+        "Prompt": "What is a GPU and how is it different from a CPU?\n",
+        "Message": "A GPU (Graphics Processing Unit) is a specialized chip handling graphics and computations, differing from CPU (Central Processing Unit) in focus and architecture.",
+        "Time Sent": 1724951405979,
+        "Time Recieved": 1724951406295,
+        "Source": "Groq"
+    },
+    {
+        "Prompt": "What are the layers of the OSI model?\n",
+        "Message": "The OSI model consists of seven layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application.",
+        "Time Sent": 1724951406295,
+        "Time Recieved": 1724951406655,
+        "Source": "Groq"
+    },
+    {
+        "Prompt": "What is BeeGFS?\n",
+        "Message": "BeeGFS is a high-performance, parallel, and distributed file system designed for data-intensive applications and HPC clusters.",
+        "Time Sent": 1724951406655,
+        "Time Recieved": 1724951407568,
+        "Source": "Groq"
+    },
+    {
+        "Prompt": "What are the various components that comprise a computer?\n",
+        "Message": "A computer comprises various components including CPU, motherboard, RAM, storage (hard drive or SSD), power supply, graphics card, and peripherals.",
+        "Time Sent": 1724951407568,
+        "Time Recieved": 1724951407914,
+        "Source": "Groq"
+    },
+    {
+        "Prompt": "What is Federated Learning?",
+        "Message": "Federated Learning: a distributed machine learning approach where multiple devices or organizations collaborate to train a shared model without sharing data.",
+        "Time Sent": 1724951407914,
+        "Time Recieved": 1724951408243,
+        "Source": "Groq"
+    }
+]

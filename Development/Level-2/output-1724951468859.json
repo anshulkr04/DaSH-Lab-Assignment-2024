@@ -1,0 +1,26 @@
+[
+    {
+        "Prompt": "What are the layers of the OSI model?",
+        "Message": "\"The OSI model has 7 layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application, each with unique functions.\"",
+        "ClientID": 1724951468859,
+        "Time Sent": 1724951468859,
+        "Time Recieved": 1724951469434,
+        "Source": "Groq"
+    },
+    {
+        "Prompt": "What is an operating system?",
+        "Message": "\"An operating system is software that manages computer hardware and software resources, allowing users to interact with the computer.\"",
+        "ClientID": 1724951468859,
+        "Time Sent": 1724951469434,
+        "Time Recieved": 1724951469793,
+        "Source": "Groq"
+    },
+    {
+        "Prompt": "What is a File system?",
+        "Message": "\"A file system is a way to organize, store, and manage computer files and directories on a storage device.\"",
+        "ClientID": 1724951468859,
+        "Time Sent": 1724951469793,
+        "Time Recieved": 1724951470123,
+        "Source": "Groq"
+    }
+]
