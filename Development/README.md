@@ -1,16 +1,19 @@
 # Development
+## 1. Getting GROQ API KEY
 To get started , first get your groq api key from https://console.groq.com/keys and the run the following code:
 ```
 export GROQ_API_KEY={your api key}
 ```
-Then , 
+## 2. Level-1 Asssignment
+ 
 For the Level-1 Assignment
 ```
 cd Level-1
 python3 api.py
 ```
 this should overwrite the `output.json` file that already has been created.
-Then ,
+
+## 3. Level-2 Assignment
 For the Level-2 Assignment
 ```
 cd ..
@@ -27,4 +30,4 @@ then
 cd Developement/Level-2
 python3 client.py
 ```
-This should create a new `output.json` file.
+This should create a new `output{clientID}.json` file.
