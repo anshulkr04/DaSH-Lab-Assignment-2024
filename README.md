@@ -1,5 +1,13 @@
 # DaSH-Lab-Assignment-2024
-
+## Cloning
+First clone the repo to your local system.
+Open the your terminal and run the following command:
+```
+git clone https://github.com/anshulkr04/DaSH-Lab-Assignment-2024.git
+```
+```
+cd DaSH-Lab-Assignment-2024
+```
 ## Setup
 
 ### Make a virtual env
