@@ -11,7 +11,7 @@ from flwr_datasets import FederatedDataset
 from flwr_datasets.partitioner import IidPartitioner
 
 
-DEVICE = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+DEVICE = torch.device("mps" if torch.backends.mps.is_available() else "cuda:0" if torch.cuda.is_available() else "cpu")
 
 
 class Net(nn.Module):
@@ -115,3 +115,51 @@ def set_weights(net, parameters):
     params_dict = zip(net.state_dict().keys(), parameters)
     state_dict = OrderedDict({k: torch.tensor(v) for k, v in params_dict})
     net.load_state_dict(state_dict, strict=True)
+
+def train_with_distillation(net , trainloader , valloader , local_epochs, device):
+    """
+    Train the student model on the training set using distillation
+    """
+    temperature=2.0
+    alpha = 0.5
+
+    net.to(device) 
+    # student_model.to(device)
+    # teacher_model.to(device)
+    # teacher_model.eval()
+
+    criterion = nn.CrossEntropyLoss().to(device)
+    optimizer = torch.optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
+
+    net.train()
+    for batch in trainloader:
+        images = batch["img"]
+        labels = batch["label"]
+        optimizer.zero_grad()
+        student_outputs = net(images.to(device))
+        with torch.no_grad():
+            teacher_outputs = net(images.to(device))
+        
+        soft_student_output = F.log_softmax(student_outputs / temperature, dim=1)
+        soft_teacher_output = F.softmax(teacher_outputs / temperature, dim=1)
+        distill_loss = F.kl_div(soft_student_output, soft_teacher_output, reduction='batchmean')*(temperature**2)
+
+        ce_loss = criterion(student_outputs, labels.to(device))
+
+        loss = alpha*ce_loss + (1-alpha)*distill_loss
+
+        loss.backward()
+        optimizer.step()
+
+        train_loss, train_acc = test(net, trainloader)
+        val_loss, val_acc = test(net, valloader)
+
+        results = {
+            "train_loss": train_loss,
+            "train_accuracy": train_acc,
+            "val_loss": val_loss,
+            "val_accuracy": val_acc,
+        }
+    return results
+
+        
