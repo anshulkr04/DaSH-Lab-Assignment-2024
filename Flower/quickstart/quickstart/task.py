@@ -124,9 +124,6 @@ def train_with_distillation(net , trainloader , valloader , local_epochs, device
     alpha = 0.5
 
     net.to(device) 
-    # student_model.to(device)
-    # teacher_model.to(device)
-    # teacher_model.eval()
 
     criterion = nn.CrossEntropyLoss().to(device)
     optimizer = torch.optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
