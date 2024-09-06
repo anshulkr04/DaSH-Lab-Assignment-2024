@@ -4,7 +4,7 @@ from flwr.client import NumPyClient, ClientApp
 from flwr.common import Context
 
 from quickstart.task import (
-    Net,
+    ResNet,
     DEVICE,
     load_data,
     get_weights,
@@ -42,7 +42,7 @@ class FlowerClient(NumPyClient):
 
 def client_fn(context: Context):
     # Load model and data
-    net = Net().to(DEVICE)
+    net = ResNet().to(DEVICE)
     partition_id = context.node_config["partition-id"]
     num_partitions = context.node_config["num-partitions"]
     trainloader, valloader = load_data(partition_id, num_partitions)
