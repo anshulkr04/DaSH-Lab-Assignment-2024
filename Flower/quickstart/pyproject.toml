@@ -25,8 +25,8 @@ serverapp = "quickstart.server_app:app"
 clientapp = "quickstart.client_app:app"
 
 [tool.flwr.app.config]
-num-server-rounds = 3
-local-epochs = 100
+num-server-rounds = 100
+local-epochs = 2
 
 [tool.flwr.federations]
 default = "local-simulation"
