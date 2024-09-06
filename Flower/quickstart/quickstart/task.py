@@ -140,20 +140,20 @@ def train_with_distillation(net , trainloader , valloader , epochs, device):
                 with torch.no_grad():
                     teacher_outputs = net(images.to(device))
                 
-                soft_student_output = F.log_softmax(student_outputs / temperature, dim=1)
-                soft_teacher_output = F.softmax(teacher_outputs / temperature, dim=1)
-                distill_loss = F.kl_div(soft_student_output, soft_teacher_output, reduction='batchmean')*(temperature**2)
+                soft_student_output = F.log_softmax(student_outputs / temperature, dim=1).to(device)
+                soft_teacher_output = F.softmax(teacher_outputs / temperature, dim=1).to(device)
+                distill_loss = F.kl_div(soft_student_output, soft_teacher_output, reduction='batchmean')*(temperature**2).to(device)
                 print(f'Distillation loss for epoch={epoch}: {distill_loss}')
             else:
                 distill_loss = 0
                 print(f'Distillation loss for epoch={epoch} : {distill_loss}')
 
-            ce_loss = criterion(student_outputs, labels.to(device))
+            ce_loss = criterion(student_outputs, labels.to(device)).to(device)
 
-            loss = alpha*ce_loss + (1-alpha)*distill_loss
+            loss = (alpha*ce_loss + (1-alpha)*distill_loss).to(device)
 
-            loss.backward()
-            optimizer.step()
+            loss.backward().to(device)
+            optimizer.step().to(device)
 
     train_loss, train_acc = test(net, trainloader)
     val_loss, val_acc = test(net, valloader)
