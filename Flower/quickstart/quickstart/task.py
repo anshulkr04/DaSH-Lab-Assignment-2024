@@ -129,22 +129,24 @@ def train_with_distillation(net , trainloader , valloader , epochs, device):
     optimizer = torch.optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
     net.train()
-    for _ in range(epochs):
+    for epoch in range(epochs):
         for batch in trainloader:
             images = batch["img"]
             labels = batch["label"]
             optimizer.zero_grad()
             student_outputs = net(images.to(device))
 
-            if(epochs % 10 == 0):
+            if(epoch % 3 == 0):
                 with torch.no_grad():
                     teacher_outputs = net(images.to(device))
                 
                 soft_student_output = F.log_softmax(student_outputs / temperature, dim=1)
                 soft_teacher_output = F.softmax(teacher_outputs / temperature, dim=1)
                 distill_loss = F.kl_div(soft_student_output, soft_teacher_output, reduction='batchmean')*(temperature**2)
+                print(f'Distillation loss for epoch={epoch}: {distill_loss}')
             else:
                 distill_loss = 0
+                print(f'Distillation loss for epoch={epoch} : {distill_loss}')
 
             ce_loss = criterion(student_outputs, labels.to(device))
 
