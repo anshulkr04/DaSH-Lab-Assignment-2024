@@ -2,19 +2,18 @@
 
 from flwr.client import NumPyClient, ClientApp
 from flwr.common import Context
+from quickstart.resnet50 import ResNet50
 
 from quickstart.task import (
-    ResNet,
     DEVICE,
     load_data,
     get_weights,
     set_weights,
     train,
     test,
-    train_with_distillation
+    train_with_distillation,
+    
 )
-
-
 # Define Flower Client and client_fn
 class FlowerClient(NumPyClient):
     def __init__(self, net, trainloader, valloader, local_epochs):
@@ -42,7 +41,7 @@ class FlowerClient(NumPyClient):
 
 def client_fn(context: Context):
     # Load model and data
-    net = ResNet().to(DEVICE)
+    net = ResNet50().to(DEVICE)
     partition_id = context.node_config["partition-id"]
     num_partitions = context.node_config["num-partitions"]
     trainloader, valloader = load_data(partition_id, num_partitions)
