@@ -46,9 +46,9 @@ class Bottleneck(nn.Module):
         return out
 
 # Define the ResNet-50 model for CIFAR-10
-class ResNet50_CIFAR(nn.Module):
+class ResNet50(nn.Module):
     def __init__(self, num_classes=10):  # num_classes is 10 for CIFAR-10
-        super(ResNet50_CIFAR, self).__init__()
+        super(ResNet50, self).__init__()
 
         self.in_channels = 64
 
