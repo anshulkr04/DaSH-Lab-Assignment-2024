@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 class Bottleneck(nn.Module):
     expansion = 4  # This is used to expand the number of output channels
@@ -44,18 +45,19 @@ class Bottleneck(nn.Module):
 
         return out
 
-# Define the ResNet-50 model
-class ResNet50(nn.Module):
-    def __init__(self, num_classes=10):  # num_classes is 10 to match your example
-        super(ResNet50, self).__init__()
+# Define the ResNet-50 model for CIFAR-10
+class ResNet50_CIFAR(nn.Module):
+    def __init__(self, num_classes=10):  # num_classes is 10 for CIFAR-10
+        super(ResNet50_CIFAR, self).__init__()
 
         self.in_channels = 64
 
-        # Initial convolution and pooling layer
-        self.conv1 = nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=3, bias=False)
+        # Initial convolution layer (adjusted for CIFAR-10)
+        self.conv1 = nn.Conv2d(3, 64, kernel_size=3, stride=1, padding=1, bias=False)
         self.bn1 = nn.BatchNorm2d(64)
         self.relu = nn.ReLU(inplace=True)
-        self.maxpool = nn.MaxPool2d(kernel_size=3, stride=2, padding=1)
+
+        # No max pooling since the input images are small (32x32)
 
         # ResNet layers
         self.layer1 = self._make_layer(Bottleneck, 64, 3)
@@ -88,7 +90,8 @@ class ResNet50(nn.Module):
         x = self.conv1(x)
         x = self.bn1(x)
         x = self.relu(x)
-        x = self.maxpool(x)
+        
+        # We skip the maxpool step here
 
         x = self.layer1(x)
         x = self.layer2(x)
