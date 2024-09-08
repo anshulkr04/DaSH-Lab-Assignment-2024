@@ -12,6 +12,7 @@ from quickstart.task import (
     train,
     test,
     train_with_distillation,
+    newTrain
     
 )
 # Define Flower Client and client_fn
@@ -24,7 +25,7 @@ class FlowerClient(NumPyClient):
 
     def fit(self, parameters, config):
         set_weights(self.net, parameters)
-        results = train_with_distillation(
+        results = newTrain(
             self.net,
             self.trainloader,
             self.valloader,
