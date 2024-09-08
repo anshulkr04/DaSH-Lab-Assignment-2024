@@ -1,4 +1,2 @@
-groq
-fastapi[standard]
-requests
 flwr
+hydra
