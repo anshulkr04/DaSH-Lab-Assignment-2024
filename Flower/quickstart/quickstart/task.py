@@ -171,45 +171,5 @@ def train_with_distillation(net , trainloader , valloader , epochs, device):
     }
     return results
 
-def newTrain(net, global_net, trainloader, epochs, device, beta=0.45, temp=1):
-    """Train the model on the training set."""
-    net.to(device)  # move model to GPU if available
-    criterion = torch.nn.CrossEntropyLoss().to(device)
-    kl_lossfn = torch.nn.KLDivLoss(reduction="batchmean").to(device)
-    optimizer = torch.optim.SGD(net.parameters(), lr=0.1, momentum=0.9)
-    net.train()
-    global_net.eval()
-    running_loss = 0.0
-    for epoch in range(epochs):
-        for batch in trainloader:
-            images = batch["img"].to(device)
-            labels = batch["label"].to(device)
-#            print(device)
-            optimizer.zero_grad()
-            if (epoch  % 2  == 1):
-        
-                with torch.no_grad():
-                    global_logits = global_net(images)
-                local_logits = net(images)
-                targets = F.softmax(global_logits/temp, dim=1)
-                prob = F.log_softmax(local_logits/temp, dim=1)
-                # kl_loss = torch.sum(targets*(targets.log() - prob))/prob.size()[0]
-                kl_loss = kl_lossfn(prob, targets)
-                betaval = beta
-            else:
-                kl_loss = 0
-                betaval = 0
-
-            print(f"Distillation Loss for {epoch} = {kl_loss}")
-            ce_loss = criterion(net(images.to(device)), labels.to(device))
-            loss = (1-betaval)*ce_loss + betaval*(temp**2)*kl_loss
-            print(f"CELoss for {epoch} = {ce_loss}")
-            print(f"Loss for {epoch} = {loss}")
-            loss.backward()
-            optimizer.step()
-            running_loss += loss.item()
-
-    avg_trainloss = running_loss / len(trainloader)
-    return avg_trainloss
 
         

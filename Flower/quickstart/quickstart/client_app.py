@@ -25,7 +25,7 @@ class FlowerClient(NumPyClient):
 
     def fit(self, parameters, config):
         set_weights(self.net, parameters)
-        results = newTrain(
+        results = train_with_distillation(
             self.net,
             self.trainloader,
             self.valloader,
