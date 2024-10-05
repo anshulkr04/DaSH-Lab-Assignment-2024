@@ -8,6 +8,9 @@ git clone https://github.com/anshulkr04/DaSH-Lab-Assignment-2024.git
 ```
 cd DaSH-Lab-Assignment-2024
 ```
+
+$1 + x = x^2$
+
 ## Setup
 
 ### Make a virtual env
